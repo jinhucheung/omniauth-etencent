@@ -38,18 +38,47 @@ RSpec.describe OmniAuth::Strategies::Etencent do
   end
 
   context '#info' do
-    let(:access_token) { OAuth2::AccessToken.from_hash(client, {}) }
+    let(:access_token) { OmniAuth::Etencent::AccessToken.from_hash(client, access_token_hash) }
 
     before do
       allow(subject).to receive(:access_token).and_return(access_token)
-      allow(subject).to receive(:raw_info).and_return(raw_info_hash)
+    end
+
+    it 'should return the account id' do
+      expect(subject.uid).to eq(access_token_hash.dig('data', 'authorizer_info', 'account_id'))
+    end
+
+    it 'should return the authorizer info' do
+      expect(subject.info).to eq(access_token_hash.dig('data', 'authorizer_info'))
     end
   end
 
   private
 
-  def raw_info_hash
+  def access_token_hash
     {
+      "code" => 0,
+      "message" => "",
+      "message_cn" => "",
+      "data" => {
+        "authorizer_info" => {
+          "account_uin" => 2644750491,
+          "account_id" =>  2947221,
+          "scope_list" => [
+            "ads_management",
+            "ads_insights",
+            "account_management",
+            "audience_management",
+            "user_actions"
+          ],
+          "wechat_account_id" => "spid1234567890",
+          "account_role_type" => "ACCOUNT_ROLE_TYPE_AGENCY"
+        },
+        "access_token" => "<ACCESS_TOKEN>",
+        "refresh_token" => "<REFRESH_TOKEN>",
+        "access_token_expires_in" => 86400,
+        "refresh_token_expires_in" => 2592000
+      }
     }
   end
 end
