@@ -1,5 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/omniauth-etencent.svg)](https://badge.fury.io/rb/omniauth-etencent)
-[![Build Status](https://github.com/jinhucheung/omniauth-etencent/actions/workflows/main.yml/badge.svg)](https:/github.com/jinhucheung/omniauth-etencent/actions)
+[![Build Status](https://github.com/jinhucheung/omniauth-etencent/actions/workflows/main.yml/badge.svg)](https://github.com/jinhucheung/omniauth-etencent/actions)
 
 # Omniauth Etencent
 
