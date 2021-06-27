@@ -38,7 +38,7 @@ module OmniAuth
         hash['refresh_token'] = access_token.refresh_token if access_token.expires? && access_token.refresh_token
         hash['expires_at'] = access_token.expires_at if access_token.expires?
         hash['expires'] = access_token.expires?
-        hash['refresh_token_expires_at'] = access_token['refresh_token_expires_at'] if access_token['refresh_token_expires_at'].present?
+        hash['refresh_token_expires_at'] = access_token['refresh_token_expires_at'] if access_token['refresh_token_expires_at']
         hash
       end
 
