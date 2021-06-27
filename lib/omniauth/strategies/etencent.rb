@@ -44,7 +44,8 @@ module OmniAuth
 
       extra do
         {
-          scope: scope
+          scope: scope,
+          authorizer_info: authorizer_info
         }
       end
 
