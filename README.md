@@ -33,7 +33,7 @@ Here's a quick example, adding the middleware to a Rails app in `config/initiali
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :etencent, ENV['ETENCENT_CLIENT_ID'], ENV['ETENCENT_CLIENT_SECRET']
+  provider :etencent, ENV['ETENCENT_APP_ID'], ENV['ETENCENT_APP_SECRET']
 end
 ```
 
