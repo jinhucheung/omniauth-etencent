@@ -11,8 +11,6 @@ module OmniAuth
         extract_access_token: ::OmniAuth::Etencent::AccessToken
       }
 
-      option :authorize_options, %i[scope state account_type account_display_number]
-
       option :sandbox, false
 
       def authorize_params
@@ -57,6 +55,11 @@ module OmniAuth
         authorizer_info['scope_list']
       end
 
+      def request_phase
+        session['omniauth.redirect_uri'] = callback_url
+        super
+      end
+
       protected
 
       def client
@@ -70,6 +73,10 @@ module OmniAuth
 
       def api_base_url
         options.sandbox ? 'https://sandbox-api.e.qq.com' : 'https://api.e.qq.com'
+      end
+
+      def token_params
+        super.merge(authorization_code: request.params['authorization_code'], redirect_uri: session['omniauth.redirect_uri'])
       end
     end
   end
